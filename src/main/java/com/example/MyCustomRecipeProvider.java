@@ -31,7 +31,7 @@ import java.util.List;
  */
 public class MyCustomRecipeProvider implements CustomRecipeProvider {
     @Override
-    public Recipe executeRecipe() {
+    public Recipe getRecipe() {
         return new AddProperty("myProperty", "my-value", false, false);
     }
 }

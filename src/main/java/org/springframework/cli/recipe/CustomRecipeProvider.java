@@ -16,13 +16,10 @@
 package org.springframework.cli.recipe;
 
 import org.openrewrite.Recipe;
-import org.openrewrite.RecipeRun;
-
-import java.nio.file.Path;
 
 /**
  * @author Fabian Krüger
  */
 public interface CustomRecipeProvider {
-    Recipe executeRecipe();
+    Recipe getRecipe();
 }

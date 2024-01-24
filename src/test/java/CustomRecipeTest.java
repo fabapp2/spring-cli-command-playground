@@ -20,7 +20,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.openrewrite.ExecutionContext;
 import org.openrewrite.Recipe;
-import org.openrewrite.RecipeRun;
 import org.openrewrite.SourceFile;
 import org.openrewrite.internal.InMemoryLargeSourceSet;
 import org.openrewrite.maven.tree.MavenResolutionResult;
@@ -28,9 +27,7 @@ import org.openrewrite.maven.tree.ResolvedPom;
 import org.springframework.rewrite.parsers.RewriteExecutionContext;
 import org.springframework.rewrite.parsers.RewriteProjectParsingResult;
 import org.springframework.rewrite.parsers.SpringRewriteProperties;
-import org.springframework.rewrite.test.util.DummyResource;
 import org.springframework.rewrite.test.util.ParserExecutionHelper;
-import org.springframework.rewrite.test.util.ParserParityTestHelper;
 import org.springframework.rewrite.test.util.TestProjectHelper;
 
 import java.nio.file.Path;
@@ -77,7 +74,7 @@ public class CustomRecipeTest {
         String addedProperty = "<myProperty>my-value</myProperty>";
         assertThat(sourceFile.printAll()).doesNotContain(addedProperty);
 
-        Recipe recipe = new MyCustomRecipeProvider().executeRecipe();
+        Recipe recipe = new MyCustomRecipeProvider().getRecipe();
         ExecutionContext ctx = new RewriteExecutionContext();
         SourceFile after = recipe.run(new InMemoryLargeSourceSet(List.of(sourceFile)), ctx).getChangeset().getAllResults().get(0).getAfter();
 
